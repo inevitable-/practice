@@ -1,16 +1,37 @@
 <?php
+/*
+ echo "Are you sure you want to do this?  Type 'yes' to continue: ";
+$handle = fopen ("php://stdin","r");
+$line = fgets($handle);
+if(trim($line) != 'yes'){
+    echo "ABORTING!\n";
+    exit;
+}
+echo "\n"; 
+echo "Thank you, continuing...\n";
+ */
 
 class Tictactoe
 {
-  private $Player1;
-  private $Player2;
+  public $Player1;
+  public $Player2;
+  private static $instance;
 
   public function __construct(){
     # self::generate_setter_functions("X");
     # self::generate_getter_functions();
-      self::set_Player1("X");
-      self::set_Player2("O");
+    # self::set_Player1("X");
+    # self::set_Player2("O");
     }
+
+   public static function getInstance() {
+
+    if(!self::$instance) {
+      self::$instance = new self();
+    }
+
+    return self::$instance;
+  } 
 
    public function set_Player1($char) {
       $this->Player1=$char;
@@ -27,6 +48,12 @@ class Tictactoe
     public function get_Player2() {
       return $this->Player2;
     }
+
+    public function print_Border($current) {
+     foreach ($current as list($a,$b,$c)) {
+            echo "$a $b $c\n";
+          }
+   }
 
 /*    public function generate_setter_functions(){
      $class_vars = get_class_vars(get_class($this));
