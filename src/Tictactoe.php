@@ -1,4 +1,6 @@
 <?php
+require_once(__ROOT__.'/src/Maininterface.php');
+
 /*
  echo "Are you sure you want to do this?  Type 'yes' to continue: ";
 $handle = fopen ("php://stdin","r");
@@ -17,11 +19,7 @@ class Tictactoe
   public $Player2;
   private static $instance;
 
-  public function __construct(){
-    # self::generate_setter_functions("X");
-    # self::generate_getter_functions();
-    # self::set_Player1("X");
-    # self::set_Player2("O");
+  private function __construct(){
     }
 
    public static function getInstance() {
@@ -55,6 +53,96 @@ class Tictactoe
           }
    }
 
+   public function game_Winning ($current) {
+      if ($current [0] [0] == "X" && $current [0] [1] == "X"
+          && $current [0] [2] == "X"){
+         echo "\nPlayer X Wins!!!\n";  
+         exit;   
+      }
+      if ($current [0] [0] == "O" && $current [0] [1] == "O"
+          && $current [0] [2] == "O"){
+         echo "\nPlayer O Wins!!!\n";  
+         exit;   
+      }
+      if ($current [1] [0] == "X" && $current [1] [1] == "X"
+          && $current [1] [2] == "X"){
+         echo "\nPlayer X Wins!!!\n";  
+         exit;   
+      }
+      if ($current [1] [0] == "O" && $current [1] [1] == "O"
+          && $current [1] [2] == "O"){
+         echo "\nPlayer O Wins!!!\n";  
+         exit;   
+      }
+      if ($current [2] [0] == "X" && $current [2] [1] == "X"
+          && $current [2] [2] == "X"){
+         echo "\nPlayer X Wins!!!\n";
+         exit;
+      }
+      if ($current [2] [0] == "O" && $current [2] [1] == "O"
+          && $current [2] [2] == "O"){
+         echo "\nPlayer O Wins!!!\n";
+         exit;
+      }
+      if ($current [0] [0] == "X" && $current [1] [0] == "X"
+          && $current [2] [0] == "X"){
+         echo "\nPlayer X Wins!!!\n";
+         exit;
+      }
+      if ($current [0] [0] == "O" && $current [1] [0] == "O"
+          && $current [2] [0] == "O"){
+         echo "\nPlayer O Wins!!!\n";
+         exit;
+      }
+      if ($current [0] [1] == "X" && $current [1] [1] == "X"
+          && $current [2] [1] == "X"){
+         echo "\nPlayer X Wins!!!\n";
+         exit;
+      }
+      if ($current [0] [1] == "O" && $current [1] [1] == "O"
+          && $current [2] [1] == "O"){
+         echo "\nPlayer O Wins!!!\n";
+         exit;
+      }
+      if ($current [0] [2] == "X" && $current [1] [2] == "X"
+          && $current [2] [2] == "X"){
+         echo "\nPlayer X Wins!!!\n";
+         exit;
+      }
+      if ($current [0] [2] == "O" && $current [1] [2] == "O"
+          && $current [2] [2] == "O"){
+         echo "\nPlayer O Wins!!!\n";
+         exit;
+      }
+      if ($current [0] [0] == "X" && $current [1] [1] == "X"
+          && $current [2] [2] == "X"){
+         echo "\nPlayer X Wins!!!\n";
+         exit;
+      }     
+      if ($current [0] [0] == "O" && $current [1] [1] == "O"
+          && $current [2] [2] == "O"){
+         echo "\nPlayer O Wins!!!\n";
+         exit;
+      }
+      if ($current [0] [2] == "X" && $current [1] [1] == "X"
+          && $current [2] [0] == "X"){
+         echo "\nPlayer X Wins!!!\n";
+         exit;
+      }
+      if ($current [0] [2] == "O" && $current [1] [1] == "O"
+          && $current [2] [0] == "O"){
+         echo "\nPlayer O Wins!!!\n";
+         exit;
+      }    
+   }
+      public function validate_Move($current,$rows,$columns) {
+        if ($current [$rows] [$columns] == "X"){
+          echo "The move has been made, Please Try Again\n";
+          Maininterface::getInstance()->player1_Move($current);}
+       if ($current [$rows] [$columns] == "O") {
+          echo "The move has been made, Please Try Again\n";
+          Maininterface::getInstance()->player2_Move($current);}
+      }
 /*    public function generate_setter_functions(){
      $class_vars = get_class_vars(get_class($this));
      foreach ($class_vars as $name => $value) {
